@@ -3,7 +3,7 @@
 
 if (isset($_POST['submit_data'])) 
 {    
-    $username=$_POST['txtusername'];
+    $mail=$_POST['txtmail'];
     $password=$_POST['txtpassword'];
 }
 
@@ -36,7 +36,7 @@ if (isset($_POST['submit_data']))
                         <tr>
                             <td>
                                 <label class="card-title">Email</label>
-                                <input class="form-control" type="text" name="txtusername" placeholder="Your Email">
+                                <input class="form-control" type="text" name="txtmail" placeholder="Your Email">
                             </td>
                         </tr>
                          
