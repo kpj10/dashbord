@@ -1,10 +1,24 @@
 <?php
-
+include 'config.php';
 
 if (isset($_POST['submit_data'])) 
 {    
     $mail=$_POST['txtmail'];
     $password=$_POST['txtpassword'];
+
+    $sql="select count(email) as mail from newuser where email='".$mail."' AND password='".$password."' ";
+    $fatch_data=mysqli_query($con,$sql);
+
+    $row = mysqli_fetch_assoc($fatch_data);
+
+    if($row["mail"] == 1)
+    {
+         echo "<script>alert('User Match');</script>";  
+    }
+    else
+    {
+        echo "<script>alert('I See Some Error');</script>";
+    }
 }
 
 ?>
@@ -18,13 +32,26 @@ if (isset($_POST['submit_data']))
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="css/style.css" rel="stylesheet">
         
+        <style>
+            .centered {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            }
+
+            body {background-color: #C2FBFF;}
+        </style>
+        
     </head>
-    <body background='p1.jpeg'>
+    <body bgcolor="#C2FBFF">
    <!-- <img src="p1.jpeg" class="img-fluid" alt="Responsive image"> -->
     
     <form method="POST">
-        <div class="container">  
-            <div class="card" style="width: 250px;">
+        <div class="container-fluid">  
+ 
+            <div class="centered">
+            <div class="card" style="width: 300px;">
                 <div class="card-header">
                     Welcome to World
                 </div>
@@ -50,7 +77,8 @@ if (isset($_POST['submit_data']))
                         <tr>
                             <td>
                                 <div name="btn">
-                                <button class="btn btn-primary" type="submit" name="submit_data">Login to Explor</button>        
+                                <button class="btn btn-primary" type="submit" name="submit_data">Login to Explore</button>   
+                                <a href="newuser.php">New User</a>     
                                 </div>
                             </td></tr>
                         
@@ -58,6 +86,8 @@ if (isset($_POST['submit_data']))
                 </table>    
                 </div>
             </div>
+            </div>
+           </img> 
        </div>     
     </form>     
     </body>
